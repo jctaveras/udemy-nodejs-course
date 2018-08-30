@@ -1,6 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+const PORT = process.env.PORT || 3000; 
 
 const app = express();
 
@@ -22,10 +23,6 @@ app.use(function(request, response, next) {
     next(); 
 });
 
-app.use(function(request, response, next) {
-    response.render('maintenance.hbs');
-});
-
 app.get('/', function(request, response) {
     response.render('home.hbs', {
         pageTitle: 'Home',
@@ -39,4 +36,6 @@ app.get('/about', function(request, response) {
     });
 })
 
-app.listen(3000);
+app.listen(PORT, function() {
+    console.log(`Server is up on port: ${PORT}`);
+});
